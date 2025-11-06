@@ -168,16 +168,15 @@ if tab == 1:
     df_education = pd.DataFrame(education)
     st.dataframe(df_education, hide_index=True)
 
-    st.markdown("---")
+    # st.markdown("---")
 
     # st.subheader("Resume")
-    st.markdown(">Last updated: October 2025")
     with open("resume.pdf", "rb") as f:
         pdf_bytes = f.read()
         st.pdf(pdf_bytes)
     col1, col2, col3 = st.columns([2, 1, 2])
     with col1:
-        st.write("")
+        st.markdown(">Last updated: October 2025")
     with col2:
         btn = st.download_button(
             label="Download Resume (PDF)",
