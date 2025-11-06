@@ -108,8 +108,9 @@ if tab == 0:
         st.button("Reset Filters", on_click=reset_filters)
 
     filtered_df = df_sorted[
-        df_sorted['year'].astype(str).isin(st.session_state.selected_years) &
-        df_sorted['pub'].isin(st.session_state.selected_pubs)
+        ((len(st.session_state.selected_years) == 0) | (df_sorted['year'].astype(str).isin(st.session_state.selected_years))) 
+        &
+        ((len(st.session_state.selected_pubs) == 0) | (df_sorted['pub'].isin(st.session_state.selected_pubs)))
     ].reset_index(drop=True)
 
 
