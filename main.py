@@ -14,6 +14,9 @@ st.markdown(
     html, body, [class*="css"] {
         font-family: 'EB Garamond', sans-serif;
     }
+    .stButton button:hover {
+        border: 1px solid #060680ff;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -97,7 +100,7 @@ if tab == 0:
 
 
     # page filters, reset
-    _, col1, col2, col3, _ = st.columns([1, 3, 3, 1, 1])
+    _, col1, col2, col3, _ = st.columns([0.25, 3, 3, 1, 0.25])
     with col1:
         selected_years = st.multiselect("Filter by Year", options=years, key='selected_years')
     with col2:
@@ -105,7 +108,7 @@ if tab == 0:
     with col3:
         st.write("")
         st.write("")
-        st.button("Reset Filters", on_click=reset_filters)
+        st.button("Reset Filters", on_click=reset_filters, width='stretch')
 
     filtered_df = df_sorted[
         ((len(st.session_state.selected_years) == 0) | (df_sorted['year'].astype(str).isin(st.session_state.selected_years))) 
@@ -183,7 +186,7 @@ if tab == 1:
             data=pdf_bytes,
             file_name="resume.pdf",
             mime="application/pdf",
-            use_container_width=True
+            width='stretch'
         )
     with col3:
         st.write("")
